@@ -8,6 +8,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Esse {@link RestController} representa nossa <b>Facade</b>, pois abstrai toda
+ * a complexidade de integrações (Banco de Dados H2 e API do ViaCEP) em uma
+ * interface simples e coesa (API REST).
+ *
+ * @author S4nt1ag0
+ */
+
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {

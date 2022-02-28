@@ -1,12 +1,18 @@
 package com.example.registerofaddress.entities;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class User {
-private Long CPF;
-private String name;
-private Endereco endereco;
-private int numero;
+@Entity
+@Table(name = "tb_user")
+public class User implements Serializable {
+
+    @Id
+    private Long CPF;
+    private String name;
+    @ManyToOne
+    private Endereco endereco;
 
     public User(){};
 

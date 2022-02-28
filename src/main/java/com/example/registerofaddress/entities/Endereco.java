@@ -3,10 +3,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import javax.annotation.Generated;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Generated("jsonschema2pojo")
+@Entity
 public class Endereco{
 
+    @Id
     private String cep;
     private String logradouro;
     private String complemento;
