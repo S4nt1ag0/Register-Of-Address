@@ -6,6 +6,7 @@ import com.example.registerofaddress.repositories.EnderecoRepository;
 import com.example.registerofaddress.repositories.UserRepository;
 import com.example.registerofaddress.services.EnderecoService;
 import com.example.registerofaddress.services.UserService;
+import com.example.registerofaddress.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class UserServiceImp implements UserService {
     @Override
     public User findById(Long id){
         Optional<User> obj = userRepository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     @Override
@@ -46,13 +47,9 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User update(Long id, User user){
-        Optional<User> entity = userRepository.findById(id);
-        if(entity.isPresent()){
-            User userdb = entity.get();
-            userdb.setName(user.getName());
-            return userRepository.save(userdb);
-        }
-        return null;
+        User entity = findById(id);
+        entity.setName(user.getName());
+        return userRepository.save(entity);
     }
 
     private User saveUser(User user){
