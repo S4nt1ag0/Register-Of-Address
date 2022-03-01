@@ -3,6 +3,7 @@ package com.example.registerofaddress.repositories;
 import com.example.registerofaddress.entities.Endereco;
 import com.example.registerofaddress.entities.User;
 import org.junit.jupiter.api.*;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.event.annotation.BeforeTestClass;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserRepositoryTest {
 
-    @Autowired
+    @Mock
     UserRepository userRepository;
 
     static boolean recordsCreated = false;
