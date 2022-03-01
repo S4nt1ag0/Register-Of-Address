@@ -49,7 +49,11 @@ public class UserServiceImp implements UserService {
     public User update(Long id, User user){
         User entity = findById(id);
         entity.setName(user.getName());
-        return userRepository.save(entity);
+        entity.getEndereco().setCep(user.getEndereco().getCep());
+        entity.getEndereco().setNumeroCasa(user.getEndereco().getNumeroCasa());
+        User updated = this.saveUser(entity);
+        return updated;
+
     }
 
     private User saveUser(User user){

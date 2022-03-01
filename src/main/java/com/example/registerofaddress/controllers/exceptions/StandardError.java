@@ -1,4 +1,4 @@
-package com.example.registerofaddress.resources.exceptions;
+package com.example.registerofaddress.controllers.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

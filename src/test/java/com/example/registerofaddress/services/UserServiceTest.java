@@ -2,25 +2,33 @@ package com.example.registerofaddress.services;
 
 import com.example.registerofaddress.entities.Endereco;
 import com.example.registerofaddress.entities.User;
+import com.example.registerofaddress.repositories.EnderecoRepository;
 import com.example.registerofaddress.repositories.UserRepository;
+import com.example.registerofaddress.services.exceptions.ResourceNotFoundException;
 import com.example.registerofaddress.services.impl.UserServiceImp;
 import org.junit.jupiter.api.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserServiceTest {
 
-    @InjectMocks
-    UserService userService = new UserServiceImp();
+    @Autowired
+    UserService userService;
 
-    @Mock
+    @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    EnderecoRepository enderecoRepository;
 
     Endereco endereco;
 
@@ -29,7 +37,6 @@ public class UserServiceTest {
     @BeforeEach
     void setUp() throws Exception
     {
-        MockitoAnnotations.openMocks(this);
         endereco = new Endereco();
 
         endereco.setCep("01001-000");
@@ -80,8 +87,13 @@ public class UserServiceTest {
     @Order(5)
     void deleteUser(){
         userService.deleteById(458447L);
-        User user = userService.findById(458447L);
-        Assertions.assertNull(user);
+        try {
+            User user = userService.findById(458447L);
+            Assertions.assertNull(user);
+        }catch (ResourceNotFoundException e){
+            Assertions.assertEquals(e.getClass(),ResourceNotFoundException.class);
+        }
+
     }
 
 }

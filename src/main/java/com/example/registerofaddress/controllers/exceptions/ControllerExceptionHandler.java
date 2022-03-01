@@ -1,4 +1,4 @@
-package com.example.registerofaddress.resources.exceptions;
+package com.example.registerofaddress.controllers.exceptions;
 
 import com.example.registerofaddress.services.exceptions.DatabaseException;
 import com.example.registerofaddress.services.exceptions.ResourceNotFoundException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 
 @ControllerAdvice
-public class ResourceExceptionHandler {
+public class ControllerExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request){

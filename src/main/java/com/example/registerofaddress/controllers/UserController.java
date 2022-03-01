@@ -1,4 +1,4 @@
-package com.example.registerofaddress.resources;
+package com.example.registerofaddress.controllers;
 
 import com.example.registerofaddress.entities.User;
 import com.example.registerofaddress.services.UserService;
@@ -23,7 +23,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserResource {
+public class UserController {
 
     @Autowired
     private UserService userService;

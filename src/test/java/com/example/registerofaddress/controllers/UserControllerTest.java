@@ -1,22 +1,21 @@
-package com.example.registerofaddress.resources;
-
+package com.example.registerofaddress.controllers;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-@WebMvcTest
-@ExtendWith(SpringExtension.class)
-public class UserResourceTest {
+@SpringBootTest
+@AutoConfigureMockMvc
+public class UserControllerTest {
+
     @Autowired
-    private MockMvc mvc;
+    public MockMvc mvc;
 
     @Test
     public void testCreation() throws Exception{
@@ -32,7 +31,7 @@ public class UserResourceTest {
                                 "  \"cpf\": 4455874\n" +
                                 "}")
                 ).andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.logradouro").value("Praça da Sé"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.endereco.logradouro").value("Praça da Sé"));
 
     }
 
@@ -41,7 +40,7 @@ public class UserResourceTest {
         this.mvc.perform(MockMvcRequestBuilders
                         .get("/users")
                 ).andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.logradouro").value("Praça da Sé"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].endereco.logradouro").value("Praça da Sé"));
 
     }
 
@@ -52,7 +51,7 @@ public class UserResourceTest {
                         .param("id","4455874")
                 ).andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.logradouro").value("Praça da Sé"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].endereco.logradouro").value("Praça da Sé"));
 
     }
 }

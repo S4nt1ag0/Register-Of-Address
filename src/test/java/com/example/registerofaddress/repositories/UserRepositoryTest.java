@@ -18,12 +18,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserRepositoryTest {
 
-    @Mock
+    @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    EnderecoRepository enderecoRepository;
 
     static boolean recordsCreated = false;
 
-    @BeforeTestClass
+    @BeforeEach
     public void configure() throws Exception
     {
         if (!recordsCreated)
@@ -46,6 +49,8 @@ public class UserRepositoryTest {
         user2.setCPF(845472L);
         user2.setName("Sant");
         user2.setEndereco(endereco);
+
+        enderecoRepository.save(endereco);
 
         userRepository.save(user1);
         userRepository.save(user2);
@@ -76,25 +81,25 @@ public class UserRepositoryTest {
     @Order(3)
     void updateUserById()
     {
-        Long CPF = 458447L;
+        Long CPF = 45847L;
         Optional<User> opUser = userRepository.findById(CPF);
         User user = opUser.get();
         user.setName("John");
         userRepository.save(user);
         Optional<User> opUser2 = userRepository.findById(CPF);
-        User user2 = opUser.get();
-        Assertions.assertNull(user2);
-        assertEquals(user.getName(),"John");
+        User user2 = opUser2.get();
+        assertNotNull(user2);
+        assertEquals(user2.getName(),"John");
     }
 
     @Test
     @Order(4)
     void deleteUserById()
     {
-        Long CPF = 458447L;
+        Long CPF = 45847L;
         userRepository.deleteById(CPF);
         Optional<User> opUser = userRepository.findById(CPF);
-        User user = opUser.get();
+        User user = opUser.orElse(null);
         Assertions.assertNull(user);
     }
 

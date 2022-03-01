@@ -23,10 +23,7 @@ public class RegisterOfAddressApplication {
         SpringApplication.run(RegisterOfAddressApplication.class, args);
     }
 /*
-    TODO::
-    IMPLEMENTS EXCEPTIONS ok
-    ADD UNIT TESTS AND INTEGRATION TESTS (MAYBE ONLY INTEGRATION TETSES ARE POSSIBLE)
-    CHANGE DATABASE H2 to POSTGRELSS
     IMPROVE DOCUMENTATION (maybe rewatch video of Swagger)
+    IMPROVE README
 */
 }
