@@ -10,6 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 @WebMvcTest
 @ExtendWith(SpringExtension.class)
 public class UserResourceTest {
@@ -17,7 +19,7 @@ public class UserResourceTest {
     private MockMvc mvc;
 
     @Test
-    public void testInt() throws Exception{
+    public void testCreation() throws Exception{
         this.mvc.perform(MockMvcRequestBuilders
                         .post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -30,6 +32,26 @@ public class UserResourceTest {
                                 "  \"cpf\": 4455874\n" +
                                 "}")
                 ).andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.logradouro").value("Praça da Sé"));
+
+    }
+
+    @Test
+    public void testList() throws Exception{
+        this.mvc.perform(MockMvcRequestBuilders
+                        .get("/users")
+                ).andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.logradouro").value("Praça da Sé"));
+
+    }
+
+    @Test
+    public void testFindUserByID() throws Exception{
+        this.mvc.perform(MockMvcRequestBuilders
+                        .get("/users")
+                        .param("id","4455874")
+                ).andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.logradouro").value("Praça da Sé"));
 
     }
