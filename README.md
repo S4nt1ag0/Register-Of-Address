@@ -7,7 +7,8 @@ only name and cep, and a api will be consumed for get the address and save in a 
   - [Requirements](#requirements)
   - [Running the application](#running-the-application)
   - [API Doc](#api-doc)
-  - [User characteristics](#User characteristics)
+  - [User characteristics](#User-characteristics)
+  - [Address characteristics](Address-characteristics)
   - [Technologies involved](#technologies-involved)
   - [Utilities](#utilities)
   - [Operations](#operations)
@@ -39,11 +40,23 @@ A Swagger document for this API can be found in:
 
 - CPF (primary key)
 - Name
-- CEP
-- House number
+- Address
 
-With the CEP information, an external api is consumed to provide data linked to the cep, such as state, city, street, DDD, and others.
+## Address characteristics
 
+- CEP (primary key)
+- Logradouro
+- Complemento
+- Bairro
+- Localidade
+- Uf
+- ibge
+- gia
+- ddd
+- siafi
+- houseNumber
+
+With the CEP information, an external api is consumed to provide data linked to the cep, such as state, city, street, DDD, and others. But the house or apartment number must be provided by the user
 ## Technologies involved
 
 - Spring Boot
