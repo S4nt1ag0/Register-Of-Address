@@ -8,12 +8,12 @@ public interface UserService {
 
     List<User> findAll();
 
-    User findById(Long id);
+    User findById(String CPF);
 
 
     User insert(User user);
 
-    void deleteById(Long id);
+    void deleteById(String CPF);
 
-    User update(Long id, User user);
+    User update(String CPF, User user);
 }

@@ -34,9 +34,9 @@ public class UserController {
         return ResponseEntity.ok().body(list);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findbyId(@PathVariable Long id){
-        User user = userService.findById(id);
+    @GetMapping(value = "/{CPF}")
+    public ResponseEntity<User> findbyId(@PathVariable String CPF){
+        User user = userService.findById(CPF);
         return ResponseEntity.ok().body(user);
     }
 
@@ -46,12 +46,12 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+    @DeleteMapping(value = "/{CPF}")
+    public ResponseEntity<Void> deleteById(@PathVariable String CPF){
         try {
-            userService.deleteById(id);
+            userService.deleteById(CPF);
         }catch (EmptyResultDataAccessException e){
-            throw new ResourceNotFoundException(id);
+            throw new ResourceNotFoundException(CPF);
         }
         catch (DataIntegrityViolationException e){
             throw new DatabaseException(e.getMessage());
@@ -59,13 +59,13 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user){
+    @PutMapping(value = "/{CPF}")
+    public ResponseEntity<User> update(@PathVariable String CPF, @RequestBody User user){
         try{
-        user = userService.update(id,user);
+        user = userService.update(CPF,user);
         return ResponseEntity.ok().body(user);
         }catch (EntityNotFoundException e){
-            throw new ResourceNotFoundException(id);
+            throw new ResourceNotFoundException(CPF);
         }
     }
 }

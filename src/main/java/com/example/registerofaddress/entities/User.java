@@ -9,24 +9,24 @@ import java.util.Objects;
 public class User implements Serializable {
 
     @Id
-    private Long CPF;
+    private String CPF;
     private String name;
     @ManyToOne
     private Endereco endereco;
 
     public User(){};
 
-    public User(Long CPF, String name, Endereco endereco) {
+    public User(String CPF, String name, Endereco endereco) {
         this.CPF = CPF;
         this.name = name;
         this.endereco = endereco;
     }
 
-    public Long getCPF() {
+    public String getCPF() {
         return CPF;
     }
 
-    public void setCPF(Long CPF) {
+    public void setCPF(String CPF) {
         this.CPF = CPF;
     }
 

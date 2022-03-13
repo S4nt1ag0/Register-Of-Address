@@ -30,9 +30,9 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User findById(Long id){
-        Optional<User> obj = userRepository.findById(id);
-        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+    public User findById(String CPF){
+        Optional<User> obj = userRepository.findById(CPF);
+        return obj.orElseThrow(() -> new ResourceNotFoundException(CPF));
     }
 
     @Override
@@ -41,13 +41,13 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void deleteById(Long id){
-        userRepository.deleteById(id);
+    public void deleteById(String CPF){
+        userRepository.deleteById(CPF);
     }
 
     @Override
-    public User update(Long id, User user){
-        User entity = findById(id);
+    public User update(String CPF, User user){
+        User entity = findById(CPF);
         entity.setName(user.getName());
         entity.getEndereco().setCep(user.getEndereco().getCep());
         entity.getEndereco().setNumeroCasa(user.getEndereco().getNumeroCasa());

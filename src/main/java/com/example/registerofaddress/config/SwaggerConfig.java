@@ -23,7 +23,7 @@ public class SwaggerConfig {
                 "When the user registers with a CPF (primary key), name and a CEP code " +
                 "(primary key of address) and house number, an external API is consulted returning the" +
                 " address data for that zip code. This creates a new entity in the database.",
-                "1.0.0","",contact,"","",new ArrayList<>());
+                "1.0.1","",contact,"","",new ArrayList<>());
 
 
         @Bean

@@ -44,7 +44,7 @@ public class UserServiceTest {
 
         user = new User();
         user.setName("Sant");
-        user.setCPF(458447L);
+        user.setCPF("458447");
         user.setEndereco(endereco);
     }
 
@@ -67,7 +67,7 @@ public class UserServiceTest {
     @Test
     @Order(3)
     void getUser(){
-        User user = userService.findById(458447L);
+        User user = userService.findById("458447");
         Assertions.assertNotNull(user);
         Assertions.assertEquals("01001-000",user.getEndereco().getCep());
     }
@@ -76,9 +76,9 @@ public class UserServiceTest {
     @Test
     @Order(4)
     void updateUser(){
-        User user = userService.findById(458447L);
+        User user = userService.findById("458447");
         user.getEndereco().setCep("40015-970");
-        user = userService.update(458447L,user);
+        user = userService.update("458447",user);
         Assertions.assertNotNull(user);
         Assertions.assertEquals("Praça da Inglaterra",user.getEndereco().getLogradouro());
     }
@@ -86,9 +86,9 @@ public class UserServiceTest {
     @Test
     @Order(5)
     void deleteUser(){
-        userService.deleteById(458447L);
+        userService.deleteById("458447");
         try {
-            User user = userService.findById(458447L);
+            User user = userService.findById("458447");
             Assertions.assertNull(user);
         }catch (ResourceNotFoundException e){
             Assertions.assertEquals(e.getClass(),ResourceNotFoundException.class);

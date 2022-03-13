@@ -22,7 +22,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(
         title ="Register of Address",
-        version = "1.0.0",
+        version = "1.0.1",
         description = "When the user registers with a CPF (primary key), name and a CEP" +
         "(primary key of address) and house number, an external API is consulted returning the" +
         "address data for that zip code. This creates a new entity in the database.",

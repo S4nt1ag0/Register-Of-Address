@@ -5,4 +5,4 @@ import jdk.jfr.Registered;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Registered
-public interface UserRepository extends JpaRepository<User,Long> {}
+public interface UserRepository extends JpaRepository<User,String> {}

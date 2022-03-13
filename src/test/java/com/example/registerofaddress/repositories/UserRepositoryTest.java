@@ -39,14 +39,14 @@ public class UserRepositoryTest {
     {
         User user1 = new User();
         Endereco endereco = new Endereco();
-        user1.setCPF(45847L);
+        user1.setCPF("45847");
         user1.setName("Thai");
         endereco.setCep("40015970");
         endereco.setNumeroCasa(39);
         user1.setEndereco(endereco);
 
         User user2 = new User();
-        user2.setCPF(845472L);
+        user2.setCPF("845472");
         user2.setName("Sant");
         user2.setEndereco(endereco);
 
@@ -60,7 +60,7 @@ public class UserRepositoryTest {
     @Order(1)
     void findUserById()
     {
-        Long CPF = 845472L;
+        String CPF = "845472";
         Optional<User> opUser = userRepository.findById(CPF);
         User user = opUser.get();
         assertNotNull(user);
@@ -81,7 +81,7 @@ public class UserRepositoryTest {
     @Order(3)
     void updateUserById()
     {
-        Long CPF = 45847L;
+        String CPF = "45847";
         Optional<User> opUser = userRepository.findById(CPF);
         User user = opUser.get();
         user.setName("John");
@@ -96,7 +96,7 @@ public class UserRepositoryTest {
     @Order(4)
     void deleteUserById()
     {
-        Long CPF = 45847L;
+        String CPF = "45847";
         userRepository.deleteById(CPF);
         Optional<User> opUser = userRepository.findById(CPF);
         User user = opUser.orElse(null);
