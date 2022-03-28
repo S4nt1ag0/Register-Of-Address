@@ -34,7 +34,7 @@ To run this API you'll need to execute the following command on your terminal:
 
 A Swagger document for this API can be found in:
 
-    http://localhost:8080/starwars/swagger-ui/index.html
+    http://localhost:8080/swagger-ui/index.html
 
 ## User characteristics
 
